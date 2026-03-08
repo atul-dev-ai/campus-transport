@@ -46,13 +46,14 @@
 
 Follow these steps to run and edit this project on your local computer:
 
-**1. Clone the repository:**
-    ```bash
-    git clone [https://github.com/atul-dev-ai/bus_schedule.git](https://github.com/atul-dev-ai/bus_schedule.git)
-    ```
-    ```bash
-    cd bus_schedule
-    ```
+## **1. Clone the repository:**
+ 
+  ```bash
+  git clone https://github.com/atul-dev-ai/campus-transport.git
+  ```
+  ```bash
+  cd bus_schedule
+  ```
 
 ## 2. Open the Project:
 Simply double-click the index.html file to open it in your browser, or use VS Code's "Live Server" extension for hot-reloading.
