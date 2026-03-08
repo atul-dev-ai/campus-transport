@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Transport Schedule</title>
+  <link rel="stylesheet" href="src/output.css">
+  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8fafc;
+    }
+  </style>
+</head>
+
+<body class="text-slate-800 flex flex-col min-h-screen">
+
+  <nav class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="#" class="flex items-center space-x-2">
+        <div class="bg-blue-600 p-2 rounded-lg text-white">
+          <i data-lucide="bus" class="w-5 h-5"></i>
+        </div>
+        <span class="text-xl font-bold tracking-tight text-slate-900">Campus<span
+            class="text-blue-600">Transit</span></span>
+      </a>
+      <div class="hidden md:flex space-x-6 text-sm font-medium text-slate-600">
+        <a href="#" class="text-blue-600">Schedules</a>
+        <a href="#" class="hover:text-blue-600 transition">Routes</a>
+        <a href="#" class="hover:text-blue-600 transition">Help</a>
+      </div>
+      <button class="md:hidden text-slate-500"><i data-lucide="menu"></i></button>
+    </div>
+  </nav>
+
+  <main class="flex-grow">
+
+    <div class="relative pb-24 pt-16 px-4 bg-cover bg-center bg-no-repeat"
+      style="background-image: url('/static/images/transport.jpg');">
+      <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"></div>
+
+      <div class="relative container mx-auto max-w-4xl text-center z-10 text-white">
+        <span
+          class="px-4 py-1.5 bg-blue-500/20 text-blue-300 font-bold rounded-full text-sm uppercase tracking-widest mb-4 inline-block border border-blue-500/30">
+          DIU Smart City
+        </span>
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight text-white drop-shadow-lg">Daily Bus Schedule
+        </h1>
+        <p class="text-slate-200 mb-10 md:text-lg max-w-2xl mx-auto">Find your accurate bus routes and departure times
+          effortlessly. Always stay on time.</p>
+
+        <div class="bg-white/10 p-2 rounded-xl inline-flex backdrop-blur-md border border-white/20 shadow-2xl">
+          <button id="btn-to" onclick="switchTab('to')"
+            class="px-8 py-3 bg-white text-blue-700 font-bold rounded-lg shadow-sm transition active:scale-95 cursor-pointer">To
+            Campus</button>
+          <button id="btn-from" onclick="switchTab('from')"
+            class="px-8 py-3 text-white hover:text-blue-200 font-medium transition active:scale-95 cursor-pointer">From Campus</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container mx-auto px-4 -mt-10 max-w-4xl pb-16 relative z-20">
+
+      <div id="list-to" class="space-y-4">
+
+        <div
+          class="bg-white rounded-2xl p-5 shadow-md border border-slate-100 hover:shadow-lg transition hover:border-blue-200">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div class="flex items-start md:items-center gap-4 md:gap-6">
+              <div class="text-center shrink-0 w-24">
+                <h2 class="text-2xl font-bold text-slate-900">07:00 <span class="text-sm text-slate-500">AM</span></h2>
+              </div>
+              <div class="hidden md:block w-px h-12 bg-slate-200"></div>
+              <div>
+                <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">Mirpur 10 <i
+                    data-lucide="arrow-right" class="w-4 h-4 text-slate-400"></i> DIU Smart City</h3>
+                <p class="text-sm text-slate-500 flex items-center gap-1 mt-1"><i data-lucide="map-pin"
+                    class="w-3 h-3"></i> Via: Kazipara, Agargaon</p>
+              </div>
+            </div>
+            <div class="flex items-center justify-between md:flex-col md:items-end gap-3">
+              <span
+                class="px-3 py-1 bg-emerald-100 text-emerald-700 text-xs font-bold rounded-full uppercase tracking-wide">Scheduled</span>
+              <div class="text-sm font-medium text-slate-500 flex items-center gap-1"><i data-lucide="users"
+                  class="w-4 h-4"></i> Non-AC</div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="bg-white rounded-2xl p-5 shadow-md border border-blue-200 ring-2 ring-blue-50 relative overflow-hidden transition">
+          <div class="absolute top-0 left-0 w-1.5 h-full bg-blue-500"></div>
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pl-3">
+            <div class="flex items-start md:items-center gap-4 md:gap-6">
+              <div class="text-center shrink-0 w-24">
+                <h2 class="text-2xl font-bold text-blue-600">07:30 <span class="text-sm text-blue-400">AM</span></h2>
+              </div>
+              <div class="hidden md:block w-px h-12 bg-slate-200"></div>
+              <div>
+                <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">Dhanmondi <i
+                    data-lucide="arrow-right" class="w-4 h-4 text-slate-400"></i> DIU Smart City</h3>
+                <p class="text-sm text-slate-500 flex items-center gap-1 mt-1"><i data-lucide="map-pin"
+                    class="w-3 h-3"></i> Via: Asad Gate, Shyamoli</p>
+              </div>
+            </div>
+            <div class="flex items-center justify-between md:flex-col md:items-end gap-3">
+              <span
+                class="px-3 py-1 bg-amber-100 text-amber-700 text-xs font-bold rounded-full uppercase tracking-wide animate-pulse">Boarding</span>
+              <div class="text-sm font-medium text-slate-500 flex items-center gap-1"><i data-lucide="wind"
+                  class="w-4 h-4 text-blue-500"></i> AC Bus</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 hover:shadow-md transition">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div class="flex items-start md:items-center gap-4 md:gap-6">
+              <div class="text-center shrink-0 w-24">
+                <h2 class="text-2xl font-bold text-slate-900">08:00 <span class="text-sm text-slate-500">AM</span></h2>
+              </div>
+              <div class="hidden md:block w-px h-12 bg-slate-200"></div>
+              <div>
+                <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">Uttara <i data-lucide="arrow-right"
+                    class="w-4 h-4 text-slate-400"></i> DIU Smart City</h3>
+                <p class="text-sm text-slate-500 flex items-center gap-1 mt-1"><i data-lucide="map-pin"
+                    class="w-3 h-3"></i> Via: Airport, Kuril, Badda</p>
+              </div>
+            </div>
+            <div class="flex items-center justify-between md:flex-col md:items-end gap-3">
+              <span
+                class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-bold rounded-full uppercase tracking-wide">Upcoming</span>
+              <div class="text-sm font-medium text-slate-500 flex items-center gap-1"><i data-lucide="users"
+                  class="w-4 h-4"></i> Non-AC</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 hover:shadow-md transition">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div class="flex items-start md:items-center gap-4 md:gap-6">
+              <div class="text-center shrink-0 w-24">
+                <h2 class="text-2xl font-bold text-slate-900">10:30 <span class="text-sm text-slate-500">AM</span></h2>
+              </div>
+              <div class="hidden md:block w-px h-12 bg-slate-200"></div>
+              <div>
+                <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">Baipail <i
+                    data-lucide="arrow-right" class="w-4 h-4 text-slate-400"></i> DIU Smart City</h3>
+                <p class="text-sm text-slate-500 flex items-center gap-1 mt-1"><i data-lucide="map-pin"
+                    class="w-3 h-3"></i> Via: Nabinagar, Savar</p>
+              </div>
+            </div>
+            <div class="flex items-center justify-between md:flex-col md:items-end gap-3">
+              <span
+                class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-bold rounded-full uppercase tracking-wide">Upcoming</span>
+              <div class="text-sm font-medium text-slate-500 flex items-center gap-1"><i data-lucide="users"
+                  class="w-4 h-4"></i> Non-AC</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="list-from" class="space-y-4 hidden animate-fade-in">
+        <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 hover:shadow-md transition">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div class="flex items-start md:items-center gap-4 md:gap-6">
+              <div class="text-center shrink-0 w-24">
+                <h2 class="text-2xl font-bold text-slate-900">01:30 <span class="text-sm text-slate-500">PM</span></h2>
+              </div>
+              <div class="hidden md:block w-px h-12 bg-slate-200"></div>
+              <div>
+                <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">DIU Smart City <i
+                    data-lucide="arrow-right" class="w-4 h-4 text-slate-400"></i> Mirpur 10</h3>
+                <p class="text-sm text-slate-500 flex items-center gap-1 mt-1"><i data-lucide="map-pin"
+                    class="w-3 h-3"></i> Via: Agargaon, Kazipara</p>
+              </div>
+            </div>
+            <div class="flex items-center justify-between md:flex-col md:items-end gap-3">
+              <span
+                class="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded-full uppercase tracking-wide">Waiting</span>
+              <div class="text-sm font-medium text-slate-500 flex items-center gap-1"><i data-lucide="users"
+                  class="w-4 h-4"></i> Non-AC</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 hover:shadow-md transition">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div class="flex items-start md:items-center gap-4 md:gap-6">
+              <div class="text-center shrink-0 w-24">
+                <h2 class="text-2xl font-bold text-slate-900">02:30 <span class="text-sm text-slate-500">PM</span></h2>
+              </div>
+              <div class="hidden md:block w-px h-12 bg-slate-200"></div>
+              <div>
+                <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">DIU Smart City <i
+                    data-lucide="arrow-right" class="w-4 h-4 text-slate-400"></i> Dhanmondi</h3>
+                <p class="text-sm text-slate-500 flex items-center gap-1 mt-1"><i data-lucide="map-pin"
+                    class="w-3 h-3"></i> Via: Gabtoli, Shyamoli</p>
+              </div>
+            </div>
+            <div class="flex items-center justify-between md:flex-col md:items-end gap-3">
+              <span
+                class="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded-full uppercase tracking-wide">Waiting</span>
+              <div class="text-sm font-medium text-slate-500 flex items-center gap-1"><i data-lucide="wind"
+                  class="w-4 h-4 text-blue-500"></i> AC Bus</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 hover:shadow-md transition">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div class="flex items-start md:items-center gap-4 md:gap-6">
+              <div class="text-center shrink-0 w-24">
+                <h2 class="text-2xl font-bold text-slate-900">05:45 <span class="text-sm text-slate-500">PM</span></h2>
+              </div>
+              <div class="hidden md:block w-px h-12 bg-slate-200"></div>
+              <div>
+                <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">DIU Smart City <i
+                    data-lucide="arrow-right" class="w-4 h-4 text-slate-400"></i> Uttara</h3>
+                <p class="text-sm text-slate-500 flex items-center gap-1 mt-1"><i data-lucide="map-pin"
+                    class="w-3 h-3"></i> Via: Badda, Kuril, Airport</p>
+              </div>
+            </div>
+            <div class="flex items-center justify-between md:flex-col md:items-end gap-3">
+              <span
+                class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-bold rounded-full uppercase tracking-wide">Upcoming</span>
+              <div class="text-sm font-medium text-slate-500 flex items-center gap-1"><i data-lucide="users"
+                  class="w-4 h-4"></i> Non-AC</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-slate-950 text-slate-300 py-12 border-t border-slate-800 mt-auto">
+    <div class="container mx-auto px-4 max-w-5xl">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+
+        <div class="flex flex-col space-y-4">
+          <a href="#" class="flex items-center space-x-2">
+            <div class="bg-blue-600 p-2 rounded-lg text-white shadow-lg shadow-blue-900/50">
+              <i data-lucide="bus" class="w-6 h-6"></i>
+            </div>
+            <span class="text-xl font-bold tracking-tight text-white">Campus<span
+                class="text-blue-500">Transit</span></span>
+          </a>
+          <p class="text-sm text-slate-400 leading-relaxed">Reliable daily transport schedule and route finder for
+            Daffodil International University students.</p>
+        </div>
+
+        <div>
+          <h4 class="text-white font-bold mb-5 uppercase text-sm tracking-wider flex items-center"><i data-lucide="link"
+              class="w-4 h-4 mr-2 text-blue-500"></i> Links</h4>
+          <ul class="space-y-3 text-sm">
+            <li><a href="#" class="text-slate-400 hover:text-blue-400 transition flex items-center group"><span
+                  class="w-1.5 h-1.5 bg-slate-600 rounded-full mr-2 group-hover:bg-blue-400 transition"></span> Check
+                Schedules</a></li>
+            <li><a href="#" class="text-slate-400 hover:text-blue-400 transition flex items-center group"><span
+                  class="w-1.5 h-1.5 bg-slate-600 rounded-full mr-2 group-hover:bg-blue-400 transition"></span> Bus
+                Routes</a></li>
+            <li><a href="#" class="text-slate-400 hover:text-blue-400 transition flex items-center group"><span
+                  class="w-1.5 h-1.5 bg-slate-600 rounded-full mr-2 group-hover:bg-blue-400 transition"></span> Contact
+                Admin</a></li>
+          </ul>
+        </div>
+
+        <div class="md:col-span-2">
+          <h4 class="text-white font-bold mb-5 uppercase text-sm tracking-wider flex items-center"><i
+              data-lucide="code-2" class="w-4 h-4 mr-2 text-blue-500"></i> Project Developer</h4>
+
+          <div
+            class="bg-gradient-to-br from-slate-900 to-slate-800 p-6 rounded-2xl border border-slate-700 hover:border-blue-500/50 transition duration-300 shadow-xl relative overflow-hidden group">
+            <div
+              class="absolute -top-10 -right-10 w-32 h-32 bg-blue-600/10 rounded-full blur-2xl group-hover:bg-blue-500/20 transition duration-500">
+            </div>
+
+            <div
+              class="flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-5 relative z-10">
+              <div
+                class="w-20 h-20 rounded-full overflow-hidden shrink-0 border-4 border-slate-800 shadow-lg ring-2 ring-blue-500/30 group-hover:ring-blue-500 transition duration-300">
+                <img src="/static/images/atul.jpg" alt="Atul Paul"
+                  onerror="this.src='https://ui-avatars.com/api/?name=Atul+Paul&background=2563eb&color=fff&size=128'"
+                  class="w-full h-full object-cover">
+              </div>
+
+              <div class="text-center sm:text-left">
+                <h5 class="text-xl font-bold text-white mb-1 tracking-wide">Atul Paul</h5>
+                <p class="text-sm font-medium text-blue-400 mb-1">Software & Web Developer</p>
+                <p class="text-xs text-slate-400 mb-4 max-w-xs">Passionate about Generative AI, Deep Learning, and
+                  building modern web apps.</p>
+
+                <div class="flex justify-center sm:justify-start space-x-3">
+                  <a href="https://github.com/atul-dev-ai" target="_blank"
+                    class="flex items-center space-x-2 bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-lg text-xs font-semibold transition border border-slate-700">
+                    <i data-lucide="github" class="w-4 h-4"></i> <span>GitHub</span>
+                  </a>
+                  <a href="https://linkedin.com/in/paul-atul" target="_blank"
+                    class="flex items-center space-x-2 bg-blue-600/10 hover:bg-blue-600/20 text-blue-400 px-3 py-1.5 rounded-lg text-xs font-semibold transition border border-blue-500/20">
+                    <i data-lucide="linkedin" class="w-4 h-4"></i> <span>LinkedIn</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div
+        class="mt-12 pt-6 border-t border-slate-800/50 text-center flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500 font-medium">
+        <p>&copy; 2026 CampusTransit. Built for DIU.</p>
+        <div class="flex space-x-4">
+          <a href="#" class="hover:text-slate-300 transition">Privacy</a>
+          <a href="#" class="hover:text-slate-300 transition">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    function switchTab(tab) {
+      const btnTo = document.getElementById('btn-to');
+      const btnFrom = document.getElementById('btn-from');
+      const listTo = document.getElementById('list-to');
+      const listFrom = document.getElementById('list-from');
+
+      // Button Styles
+      const activeClass = "px-8 py-3 bg-white text-blue-700 font-bold rounded-lg shadow-sm transition active:scale-95";
+      const inactiveClass = "px-8 py-3 text-white hover:text-blue-200 font-medium transition active:scale-95";
+
+      if (tab === 'to') {
+        btnTo.className = activeClass;
+        btnFrom.className = inactiveClass;
+        listTo.classList.remove('hidden');
+        listFrom.classList.add('hidden');
+      } else {
+        btnFrom.className = activeClass;
+        btnTo.className = inactiveClass;
+        listFrom.classList.remove('hidden');
+        listTo.classList.add('hidden');
+      }
+    }
+  </script>
+</body>
+
+</html>
